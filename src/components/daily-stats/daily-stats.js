@@ -3,7 +3,7 @@ import covidService from '../../services/covid.service';
 
 export default class DailyStats extends Component {
 
-  covidService = new covidService('/stats');
+  covidService = new covidService();
 
   state = {
     cases: null,
