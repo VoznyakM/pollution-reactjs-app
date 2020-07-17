@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import DailyStats from '../daily-stats/daily-stats'
-import BottomNavigation from '../bottom-navigation/bottom-navigation'
+import BottomNav from '../bottom-nav/bottom-nav'
 
 export default class App extends Component {
 
@@ -14,7 +14,7 @@ export default class App extends Component {
       <>
       <h1>COVID-alert</h1>
       <DailyStats />
-      <BottomNavigation />
+      <BottomNav />
       </>
     )
   }
