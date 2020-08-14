@@ -19,7 +19,6 @@ export default class DailyStats extends Component {
   updateStats() {
     this.covidService.getStats()
       .then((stats) => {
-        console.log(stats)
         this.setState({
           cases: stats[0].cases,
           deaths: stats[0].deaths,

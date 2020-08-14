@@ -5,6 +5,7 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import RestoreIcon from '@material-ui/icons/Restore';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
+import { BrowserRouter as Link } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
@@ -25,9 +26,9 @@ export default function BottomNav() {
       showLabels
       className={classes.root}
     >
-      <BottomNavigationAction label="Статистика" icon={<RestoreIcon />} />
-      <BottomNavigationAction label="Допомога" icon={<FavoriteIcon />} />
-      <BottomNavigationAction label="Карта" icon={<LocationOnIcon />} />
-    </BottomNavigation>
+      <BottomNavigationAction label="Статистика" value="/" icon={<RestoreIcon />} component={Link} to="/"  />
+      <BottomNavigationAction label="Допомога" component={Link} to="/users" icon={<FavoriteIcon />} />
+      <BottomNavigationAction label="Карта" component={Link} to="/about" icon={<LocationOnIcon />} />
+    </BottomNavigation> 
   );
 }
