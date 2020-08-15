@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import DailyStats from '../daily-stats/daily-stats'
 import Map from '../map/map'
+import Settings from '../settings/settings'
 import BottomNav from '../bottom-nav/bottom-nav'
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-
+import Chat from '../chat/chat'
 
 
 function Help() {
@@ -26,15 +27,27 @@ export default class App extends Component {
               <Link to="/">Статистика</Link>
             </li>
             <li>
-              <Link to="/help">Допомога</Link>
+              <Link to="/help">Рекомендації</Link>
             </li>
             <li>
               <Link to="/map">Карта</Link>
+            </li>
+            <li>
+              <Link to="/chat">Зв'язок з лікарем</Link>
+            </li>
+            <li>
+              <Link to="/settings">Налаштування</Link>
             </li>
           </ul>
         </nav>
 
         <Switch>
+          <Route path="/settings">
+            <Settings />
+          </Route>
+          <Route path="/chat">
+            <Chat />
+          </Route>      
           <Route path="/help">
             <Help />
           </Route>
@@ -43,7 +56,7 @@ export default class App extends Component {
           </Route>
           <Route path="/">
             <DailyStats />
-          </Route>
+          </Route>    
         </Switch>
       </div>
     </Router>

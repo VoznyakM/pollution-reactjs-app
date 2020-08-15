@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import MyChart from '../chart/chart'
 import covidService from '../../services/covid.service';
 
 export default class DailyStats extends Component {
@@ -34,6 +35,7 @@ export default class DailyStats extends Component {
         <h2>Випадків {cases}</h2>
         <h2>Смертей {deaths}</h2>
         <h2>Виздоровлень {recovered}</h2>
+        <MyChart />
       </>
     );
   }
