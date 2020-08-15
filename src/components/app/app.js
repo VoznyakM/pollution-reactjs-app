@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import DailyStats from '../daily-stats/daily-stats'
 import Map from '../map/map'
 import Settings from '../settings/settings'
-import BottomNav from '../bottom-nav/bottom-nav'
+// import BottomNav from '../bottom-nav/bottom-nav'
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Chat from '../chat/chat'
 

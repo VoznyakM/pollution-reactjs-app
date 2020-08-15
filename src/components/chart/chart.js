@@ -77,12 +77,7 @@ export default function MyChart () {
   )
   return (
     <>
-<div
-      style={{
-        width: '350px',
-        height: '300px'
-      }}
-    >    
+<div style={{ height: '50vh', width: '100%' }} >
         <Chart data={data} series={series} axes={axes} tooltip />
 </div>    
     </>
