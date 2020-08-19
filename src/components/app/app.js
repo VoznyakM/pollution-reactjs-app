@@ -3,21 +3,39 @@ import DailyStats from '../daily-stats/daily-stats'
 import Map from '../map/map'
 import Settings from '../settings/settings'
 // import BottomNav from '../bottom-nav/bottom-nav'
+import MyAppBar from '../app-bar/app-bar'
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Chat from '../chat/chat'
 
 
 function Help() {
-  return <h3>Вбирайте чисті труси і вірус вас омине</h3>;
+  return <>
+  <h3>Знання достовірних фактів і дотримання запобіжних заходів допоможуть вам захистити себе й оточуючих. 
+    Виконуйте поради місцевого органу охорони здоров’я.</h3>
+<p>Як зупинити поширення COVID-19:
+часто мийте руки милом і водою або використовуйте спиртовмісний антисептик для рук;
+тримайтеся на безпечній відстані від усіх, хто кашляє або чхає;
+вдягайте маску, якщо дотримуватися дистанції неможливо;
+не торкайтеся очей, носа або рота;
+під час кашлю або чхання прикривайте ніс і рот зігнутим ліктем або серветкою;
+не виходьте з дому, якщо погано почуваєтесь;
+якщо у вас лихоманка, кашель і вам важко дихати, зверніться до лікаря.</p>
+  </>;
 }
 
 
 export default class App extends Component {
 
+
+  
   render()  { // { match }
+  
+
+
     return (
       <>
-      <h1>COVID-alert</h1>
+
+      <MyAppBar />
       
       <Router>
       <div>
