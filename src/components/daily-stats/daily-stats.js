@@ -1,9 +1,15 @@
 import React, { Component } from "react";
 import MyChart from '../chart/chart'
 import covidService from '../../services/covid.service';
+import Paper from '@material-ui/core/Paper';
+
+import Typography from '@material-ui/core/Typography';
+
+
+
 
 export default class DailyStats extends Component {
-
+  
   covidService = new covidService();
 
   state = {
@@ -11,6 +17,7 @@ export default class DailyStats extends Component {
     deaths: null,
     recovered: null
   };
+  
 
   constructor(props) {
     super(props);
@@ -30,12 +37,36 @@ export default class DailyStats extends Component {
 
   render() {
     const { cases, deaths, recovered } = this.state;
+
     return (
       <>
-        <h2>Випадків {cases}</h2>
-        <h2>Смертей {deaths}</h2>
-        <h2>Виздоровлень {recovered}</h2>
+
+      <Paper variant="outlined">
+      <Typography variant="h5" component="h3" style={{padding: 1 + 'em'}}>
+      К-сть захворювань {cases}
+      </Typography>
+      {/* <Typography component="p">+20%</Typography> */}
+      </Paper>
+ 
+
+      <Paper variant="outlined">
+      <Typography variant="h5" component="h3" style={{padding: 1 + 'em'}}>
+      К-сть смертей {deaths}
+      </Typography>
+      {/* <Typography component="p">+20%</Typography> */}
+      </Paper>
+      <Paper variant="outlined">
+      <Typography variant="h5" component="h3" style={{padding: 1 + 'em'}}>
+      К-сть виздоровлень {recovered}
+      </Typography>
+      {/* <Typography component="p">+20%</Typography> */}
+      </Paper>
+      <Paper variant="outlined">
+        <Typography variant="h5" component="h3" style={{padding: 1 + 'em'}}>
+          Динаміка захворювань
+        </Typography>  
         <MyChart />
+      </Paper>        
       </>
     );
   }

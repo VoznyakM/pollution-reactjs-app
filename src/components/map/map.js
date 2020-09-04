@@ -1,33 +1,40 @@
-import React, { Component } from "react";
-import GoogleMapReact from 'google-map-react';
+import React, {Fragment} from "react";
+import {
+  withGoogleMap,
+  GoogleMap,
+  withScriptjs,
+  Marker,
+  Circle
+} from "react-google-maps";
 
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
- 
-export default class Map extends Component {
-  static defaultProps = {
-    center: {
-      lat: 48.92,
-      lng: 24.71
-    },
-    zoom: 11
-  };
- 
-  render() {
+const Map = props => {
     return (
-      // Important! Always set the container height explicitly
-      <div style={{ height: '100vh', width: '100%' }}>
-        <GoogleMapReact
-          bootstrapURLKeys={{ key: 'AIzaSyBLlwasnMbQP4pp1Qx0poPnCqnJ_C1lPhk' }}
-          defaultCenter={this.props.center}
-          defaultZoom={this.props.zoom}
-        >
-          <AnyReactComponent
-            lat={59.955413}
-            lng={30.337844}
-            text="My Marker"
-          />
-        </GoogleMapReact>
-      </div>
+      <GoogleMap
+        defaultZoom={props.zoom}
+        defaultCenter={props.center}
+      >
+        {props.places.map(place => {
+          return (
+            <Fragment key={place.id}>
+              <Marker
+                position={{
+                  lat: parseFloat(place.latitude),
+                  lng: parseFloat(place.longitude)
+                }}
+              />
+              {place.circle && <Circle
+                defaultCenter={{
+                  lat: parseFloat(place.latitude),
+                  lng: parseFloat(place.longitude)
+                }}
+                radius={place.circle.radius}
+                options={place.circle.options}
+              />}
+            </Fragment>
+          );
+        })}
+      </GoogleMap>
     );
-  }
 }
+
+export default withScriptjs(withGoogleMap(Map));

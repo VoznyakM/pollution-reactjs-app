@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
 import covidService from '../../services/covid.service';
 
 export default class Settings extends Component {
@@ -17,14 +19,20 @@ export default class Settings extends Component {
   render() {
     return (
       <>
-      <form>
+      {/* <form>
         <h1>Налаштування</h1>
         <h2>привіт, {this.state.username}</h2>
         <input
           type="text"
           onChange={this.myChangeHandler}
         />
-      </form>
+      </form> */}
+        <Paper variant="outlined"  style={{padding: 1 + 'em'}}>
+        <h1>МАЛЮК ЦОІ</h1>
+        <Typography variant="h6" noWrap>
+            Alert COVID
+        </Typography>
+        </Paper>
       </>
     );
   }
