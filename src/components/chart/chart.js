@@ -18,8 +18,6 @@ export default class MyChart extends Component {
   updateStats() {
     this.covidService.getStats()
       .then((stats) => {
-        // console.log(stats);
-        // this.setState({ volume_chart_data: stats });
         this.setState({
           volume_chart_data: [
             {

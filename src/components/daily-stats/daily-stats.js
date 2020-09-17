@@ -25,12 +25,12 @@ export default class DailyStats extends Component {
   }
 
   updateStats() {
-    this.covidService.getStats()
+    this.covidService.getTodayStats()
       .then((stats) => {
         this.setState({
-          cases: stats[0].cases,
-          deaths: stats[0].deaths,
-          recovered: stats[0].recovered
+          cases: stats.cases,
+          deaths: stats.deaths,
+          recovered: stats.recovered
         })
       })
   }

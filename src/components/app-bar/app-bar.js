@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
 
 import DailyStats from '../daily-stats/daily-stats'
@@ -23,68 +23,95 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Alert, AlertTitle } from '@material-ui/lab';
+import Paper from '@material-ui/core/Paper';
 
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import EqualizerIcon from '@material-ui/icons/Equalizer';
 import HelpIcon from '@material-ui/icons/Help';
 import MapIcon from '@material-ui/icons/Map';
+import { usePosition } from 'use-position';
 
-const data = [
-  {
-    id: 1,
-    name: "Стометрівка",
-    latitude: "48.92",
-    longitude: "24.71",
-    circle: {
-      radius: 100,
-      options: {
-        strokeColor: "#ff0000"
-      }
-    }
-  },
-  {
-    id: 2,
-    name: "Плаза",
-    latitude: "48.92",
-    longitude: "24.70",
-    circle: {
-      radius: 200,
-      options: {
-        strokeColor: "#FFFF00"
-      }
-    }    
-  },
-  {
-    id: 3,
-    name: "Центр",
-    latitude: "48.91",
-    longitude: "24.705",
-    circle: {
-      radius: 500,
-      options: {
-        strokeColor: "#008000"
-      }
-    }    
-  },
-  {
-    id: 4,
-    name: "Стометрівка 2",
-    latitude: "48.92",
-    longitude: "24.71",
-    circle: {
-      radius: 500,
-      options: {
-        strokeColor: "#ffff00"
-      }
-    }
-  },
-];
+// updateMap() {
+//   this.covidService.getMap()
+//     .then((areas) => {
+//       this.setState({
+//         volume_map_data: [
+//           {
+//             data: areas.map(vol => ({
+//               id: vol.id,
+//               name: vol.title,
+//               lat: vol.lat,
+//               lng: vol.lng,
+//               circle: {
+//                 radius: vol.radius,
+//                 options: {
+//                   strokeColor: vol.color
+//                 }
+//               }
+//             }))  
+//           }
+//         ]
+//       })
+//     });
+// }
+
+// const data = [
+//   {
+//     id: 1,
+//     name: "Стометрівка",
+//     latitude: "48.92",
+//     longitude: "24.71",
+//     circle: {
+//       radius: 100,
+//       options: {
+//         strokeColor: "#ff0000"
+//       }
+//     }
+//   },
+//   {
+//     id: 2,
+//     name: "Плаза",
+//     latitude: "48.92",
+//     longitude: "24.70",
+//     circle: {
+//       radius: 200,
+//       options: {
+//         strokeColor: "#FFFF00"
+//       }
+//     }    
+//   },
+//   {
+//     id: 3,
+//     name: "Центр",
+//     latitude: "48.91",
+//     longitude: "24.705",
+//     circle: {
+//       radius: 500,
+//       options: {
+//         strokeColor: "#008000"
+//       }
+//     }    
+//   },
+//   {
+//     id: 4,
+//     name: "Стометрівка 2",
+//     latitude: "48.92",
+//     longitude: "24.71",
+//     circle: {
+//       radius: 500,
+//       options: {
+//         strokeColor: "#ffff00"
+//       }
+//     }
+//   },
+// ];
 
 
 const drawerWidth = 240;
 
 function Red() {
   return <>
+  <Paper variant="outlined"  style={{padding: 1 + 'em'}}>
   <h3>Червона зона</h3>
 <Typography component={'div'}>Заборонено:
 <ul>
@@ -94,6 +121,7 @@ function Red() {
 <li>посадка в міжобласний транспорт (висадка дозволена)</li>
 </ul>
 </Typography>
+</Paper>
   </>;
 }
 
@@ -175,10 +203,12 @@ function ListItemLink(props) {
   );
 }
 
+
 export default function MyAppBar() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const [state, setState] = useState([])
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -187,6 +217,43 @@ export default function MyAppBar() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  const watch = true;
+  const {
+    latitude,
+    longitude,
+  } = usePosition(watch);
+  
+  const fetchData = async () => {
+        
+    const response = await fetch(
+      process.env.REACT_APP_BACKEND_API + '/area'
+    );
+    const areas = await response.json();
+    setState({
+                volume_map_data: 
+                  
+                    areas.map(vol => ({
+                      id: vol.id,
+                      name: vol.title,                         
+                      latitude: vol.lat,
+                      longitude: vol.lng,
+                      circle: {
+                        radius: vol.radius,
+                        options: {
+                          strokeColor: '#' + vol.color
+                        }
+                      }
+                    }))   
+    });    
+    
+    // console.log(state.volume_map_data);      
+};
+
+  useEffect(() => {
+     fetchData();   
+  }, []);
+
 
   return (
     <div className={classes.root}>
@@ -275,7 +342,9 @@ export default function MyAppBar() {
           <Map 
     center={{ lat: 48.92, lng: 24.71 }}
     zoom={12}
-    places={data}
+    latitude={latitude} 
+    longitude={longitude} 
+    places={state.volume_map_data}
     googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLlwasnMbQP4pp1Qx0poPnCqnJ_C1lPhk"
     loadingElement={<div style={{ height: `100%` }} />}
     containerElement={<div style={{ height: `800px` }} />}

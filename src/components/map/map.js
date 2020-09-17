@@ -7,21 +7,32 @@ import {
   Circle
 } from "react-google-maps";
 
+
 const Map = props => {
+// console.log(props.latitude, props.longitude);
     return (
       <GoogleMap
         defaultZoom={props.zoom}
         defaultCenter={props.center}
       >
+        
+              <Marker
+                position={{
+                  lat: props.latitude, // 48.9185051,
+                  lng: props.longitude // 24.7152683
+                }}
+              />
+
         {props.places.map(place => {
           return (
             <Fragment key={place.id}>
-              <Marker
+
+              {/* <Marker
                 position={{
                   lat: parseFloat(place.latitude),
                   lng: parseFloat(place.longitude)
                 }}
-              />
+              /> */}
               {place.circle && <Circle
                 defaultCenter={{
                   lat: parseFloat(place.latitude),
