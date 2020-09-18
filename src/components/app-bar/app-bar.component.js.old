@@ -32,54 +32,30 @@ import MapIcon from '@material-ui/icons/Map';
 import covidService from '../../services/covid.service';
 
 
-const data = [
+const sanitizers = [
   {
     id: 1,
     name: "Стометрівка",
     latitude: "48.92",
     longitude: "24.71",
-    circle: {
-      radius: 100,
-      options: {
-        strokeColor: "#ff0000"
-      }
-    }
   },
   {
     id: 2,
     name: "Плаза",
     latitude: "48.92",
-    longitude: "24.70",
-    circle: {
-      radius: 200,
-      options: {
-        strokeColor: "#FFFF00"
-      }
-    }    
+    longitude: "24.70",   
   },
   {
     id: 3,
     name: "Центр",
     latitude: "48.91",
-    longitude: "24.705",
-    circle: {
-      radius: 500,
-      options: {
-        strokeColor: "#008000"
-      }
-    }    
+    longitude: "24.705",   
   },
   {
     id: 4,
     name: "Стометрівка 2",
     latitude: "48.92",
     longitude: "24.71",
-    circle: {
-      radius: 500,
-      options: {
-        strokeColor: "#ffff00"
-      }
-    }
   },
 ];
 
@@ -317,7 +293,8 @@ export default class MyAppBar extends Component {
             <Map 
       center={{ lat: 48.92, lng: 24.71 }}
       zoom={12}
-      places={data}
+      places={data} 
+      sanitizers={sanitizers} 
       googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLlwasnMbQP4pp1Qx0poPnCqnJ_C1lPhk"
       loadingElement={<div style={{ height: `100%` }} />}
       containerElement={<div style={{ height: `800px` }} />}

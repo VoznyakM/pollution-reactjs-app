@@ -31,6 +31,34 @@ import HelpIcon from '@material-ui/icons/Help';
 import MapIcon from '@material-ui/icons/Map';
 import { usePosition } from 'use-position';
 
+
+const sanitizers = [
+  {
+    id: 1,
+    title: "Стометрівка",
+    latitude: "48.92",
+    longitude: "24.71",
+  },
+  {
+    id: 2,
+    title: "Плаза",
+    latitude: "48.92",
+    longitude: "24.70",   
+  },
+  {
+    id: 3,
+    title: "Центр",
+    latitude: "48.91",
+    longitude: "24.705",   
+  },
+  {
+    id: 4,
+    title: "Стометрівка 2",
+    latitude: "48.92",
+    longitude: "24.71",
+  },
+];
+
 // updateMap() {
 //   this.covidService.getMap()
 //     .then((areas) => {
@@ -54,57 +82,6 @@ import { usePosition } from 'use-position';
 //       })
 //     });
 // }
-
-// const data = [
-//   {
-//     id: 1,
-//     name: "Стометрівка",
-//     latitude: "48.92",
-//     longitude: "24.71",
-//     circle: {
-//       radius: 100,
-//       options: {
-//         strokeColor: "#ff0000"
-//       }
-//     }
-//   },
-//   {
-//     id: 2,
-//     name: "Плаза",
-//     latitude: "48.92",
-//     longitude: "24.70",
-//     circle: {
-//       radius: 200,
-//       options: {
-//         strokeColor: "#FFFF00"
-//       }
-//     }    
-//   },
-//   {
-//     id: 3,
-//     name: "Центр",
-//     latitude: "48.91",
-//     longitude: "24.705",
-//     circle: {
-//       radius: 500,
-//       options: {
-//         strokeColor: "#008000"
-//       }
-//     }    
-//   },
-//   {
-//     id: 4,
-//     name: "Стометрівка 2",
-//     latitude: "48.92",
-//     longitude: "24.71",
-//     circle: {
-//       radius: 500,
-//       options: {
-//         strokeColor: "#ffff00"
-//       }
-//     }
-//   },
-// ];
 
 
 const drawerWidth = 240;
@@ -235,7 +212,7 @@ export default function MyAppBar() {
                   
                     areas.map(vol => ({
                       id: vol.id,
-                      name: vol.title,                         
+                      title: vol.title,                         
                       latitude: vol.lat,
                       longitude: vol.lng,
                       circle: {
@@ -250,9 +227,30 @@ export default function MyAppBar() {
     // console.log(state.volume_map_data);      
 };
 
+const fetchSanitizer = async () => {
+        
+  const response = await fetch(
+    process.env.REACT_APP_BACKEND_API + '/sanitizer'
+  );
+  const sanitizers = await response.json();
+  setState({
+              volume_map_sanitizer:  
+                  sanitizers.map(vol => ({
+                    id: vol.id,
+                    title: vol.title,                         
+                    latitude: vol.lat,
+                    longitude: vol.lng,
+                  }))   
+  });    
+  
+  // console.log(state.volume_map_sanitizer);      
+};
+
   useEffect(() => {
      fetchData();   
   }, []);
+
+  // const [volume_map_sanitizer, fetchSanitizer] = useState(0);
 
 
   return (
@@ -332,9 +330,6 @@ export default function MyAppBar() {
           <Route path="/settings">
             <Settings />
           </Route>
-          {/*< Route path="/chat">
-            <Chat /> 
-          </Route>       */}
           <Route path="/help">
             <Help />
           </Route>
@@ -345,6 +340,7 @@ export default function MyAppBar() {
     latitude={latitude} 
     longitude={longitude} 
     places={state.volume_map_data}
+    sanitizers={sanitizers} 
     googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLlwasnMbQP4pp1Qx0poPnCqnJ_C1lPhk"
     loadingElement={<div style={{ height: `100%` }} />}
     containerElement={<div style={{ height: `800px` }} />}
