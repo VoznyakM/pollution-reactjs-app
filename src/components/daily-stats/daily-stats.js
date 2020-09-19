@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import MyChart from '../chart/chart'
 import covidService from '../../services/covid.service';
 import Paper from '@material-ui/core/Paper';
-
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
 
 
@@ -15,7 +15,8 @@ export default class DailyStats extends Component {
   state = {
     cases: null,
     deaths: null,
-    recovered: null
+    recovered: null,
+    loading: true
   };
   
 
@@ -30,20 +31,33 @@ export default class DailyStats extends Component {
         this.setState({
           cases: stats.cases,
           deaths: stats.deaths,
-          recovered: stats.recovered
+          recovered: stats.recovered,
+          loading: false
         })
-      })
+      });
+
+      this.covidService.getYesterdayStats()
+      .then((stats) => {
+        this.setState({
+          ycases: stats.cases,
+          ydeaths: stats.deaths,
+          yrecovered: stats.recovered
+        })
+      })  
   }
 
   render() {
-    const { cases, deaths, recovered } = this.state;
+    const { cases, deaths, recovered, loading, ycases, ydeaths, yrecovered, } = this.state;
+
+    if (loading) {
+      return ( <CircularProgress /> );
+    }
 
     return (
       <>
-
       <Paper variant="outlined">
       <Typography variant="h5" component="h3" style={{padding: 1 + 'em'}}>
-      К-сть захворювань {cases}
+      К-сть захворювань {cases} {parseFloat(cases/ycases).toFixed(2)}%
       </Typography>
       {/* <Typography component="p">+20%</Typography> */}
       </Paper>
@@ -51,13 +65,13 @@ export default class DailyStats extends Component {
 
       <Paper variant="outlined">
       <Typography variant="h5" component="h3" style={{padding: 1 + 'em'}}>
-      К-сть смертей {deaths}
+      К-сть смертей {deaths} {parseFloat(deaths/ydeaths).toFixed(2)}%
       </Typography>
       {/* <Typography component="p">+20%</Typography> */}
       </Paper>
       <Paper variant="outlined">
       <Typography variant="h5" component="h3" style={{padding: 1 + 'em'}}>
-      К-сть виздоровлень {recovered}
+      К-сть виздоровлень {recovered} {parseFloat(recovered/yrecovered).toFixed(2)}%
       </Typography>
       {/* <Typography component="p">+20%</Typography> */}
       </Paper>

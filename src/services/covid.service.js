@@ -12,6 +12,12 @@ export default class covidService {
     return await res.json();
   }
 
+  async getYesterdayStats(url = '/stats/' + new Date(Date.now() - 86400000).toISOString().split('T')[0]) {
+    const res = await fetch(`${this._apiBase}${url}`);
+    // console.log(res)
+    return await res.json();
+  }
+
   async getStats(url = '/stats') {
     const res = await fetch(`${this._apiBase}${url}`);
     return await res.json();

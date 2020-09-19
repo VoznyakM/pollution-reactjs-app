@@ -241,8 +241,7 @@ const fetchSanitizer = async () => {
                     latitude: vol.lat,
                     longitude: vol.lng,
                   }))   
-  });    
-  
+  });      
   // console.log(state.volume_map_sanitizer);      
 };
 
@@ -252,6 +251,8 @@ const fetchSanitizer = async () => {
 
   // const [volume_map_sanitizer, fetchSanitizer] = useState(0);
 
+  const google_map_key = process.env.GOOGLE_MAP_KEY;
+  console.log(google_map_key);
 
   return (
     <div className={classes.root}>
@@ -341,7 +342,7 @@ const fetchSanitizer = async () => {
     longitude={longitude} 
     places={state.volume_map_data}
     sanitizers={sanitizers} 
-    googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLlwasnMbQP4pp1Qx0poPnCqnJ_C1lPhk"
+    googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLlwasnMbQP4pp1Qx0poPnCqnJ_C1lPhk"  
     loadingElement={<div style={{ height: `100%` }} />}
     containerElement={<div style={{ height: `800px` }} />}
     mapElement={<div style={{ height: `100%` }} />}
