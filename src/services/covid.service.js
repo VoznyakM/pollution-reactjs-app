@@ -28,4 +28,8 @@ export default class covidService {
     return await res.json();
   }
 
+  async getStatus(url = '/setting/status_id') {
+    const res = await fetch(`${this._apiBase}${url}`);
+    return await res.json();
+  }  
 }

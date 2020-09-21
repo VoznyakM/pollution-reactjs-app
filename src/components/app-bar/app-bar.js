@@ -186,6 +186,8 @@ export default function MyAppBar() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [state, setState] = useState([])
+  const [status, setStatus] = useState([]);
+  const [sanitizer, setSanitizer] = useState([]);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -233,7 +235,7 @@ const fetchSanitizer = async () => {
     process.env.REACT_APP_BACKEND_API + '/sanitizer'
   );
   const sanitizers = await response.json();
-  setState({
+  setSanitizer({
               volume_map_sanitizer:  
                   sanitizers.map(vol => ({
                     id: vol.id,
@@ -245,15 +247,42 @@ const fetchSanitizer = async () => {
   // console.log(state.volume_map_sanitizer);      
 };
 
+const initData = async () => {
+        
+  const response = await fetch(
+    process.env.REACT_APP_BACKEND_API + '/setting/status_id'
+  );
+  const status_id = await response.json();
+  let type = 3;
+  let status_name = '';
+  let status_link = '';
+  switch (status_id.value) {
+      case "1": type = "error"; status_name = "червоній"; status_link = "red"; break;
+      case "2": type = "warning";  status_name = "помаранчевій"; status_link = "orange"; break;
+      case "3": type = "info"; status_name = "жовтій"; status_link = "yellow";break;
+      case "4": default: type = "success"; status_name = "зеленій"; status_link = "green"; break;
+  }
+  setStatus({
+    status_id: status_id.value,
+    type: type,
+    name: status_name,
+    link: status_link
+  });      
+};
+
   useEffect(() => {
+     initData();   
      fetchData();   
-  }, []);
+     fetchSanitizer();   
+    }, []);
+
+    // console.log('stat ', status.type_id);      
 
   // const [volume_map_sanitizer, fetchSanitizer] = useState(0);
 
   const google_map_key = process.env.GOOGLE_MAP_KEY;
-  console.log(google_map_key);
-
+  // console.log(google_map_key);
+  
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -320,9 +349,9 @@ const fetchSanitizer = async () => {
       >
         <div className={classes.drawerHeader} />
 
-        <Alert severity="error">
+        <Alert severity={status.type}>
         <AlertTitle>Увага</AlertTitle>
-        м. Івано-Франківськ - Ви знаходитеся в червоній зоні! <Link to="/red">Перегляньте наші рекомендації</Link></Alert>
+      м. Івано-Франківськ - Ви знаходитеся в {status.name} зоні! <Link to={status.link}>Перегляньте наші рекомендації</Link></Alert>
 
         <Switch>
           <Route path="/red">
@@ -341,7 +370,7 @@ const fetchSanitizer = async () => {
     latitude={latitude} 
     longitude={longitude} 
     places={state.volume_map_data}
-    sanitizers={sanitizers} 
+    sanitizers={sanitizer.volume_map_sanitizer} 
     googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLlwasnMbQP4pp1Qx0poPnCqnJ_C1lPhk"  
     loadingElement={<div style={{ height: `100%` }} />}
     containerElement={<div style={{ height: `800px` }} />}
