@@ -1,1 +1,4 @@
 [0716/165438.769:ERROR:file_io.cc(134)] WriteFile: Триває закриття каналу. (0xE8)
+[1012/092756.181:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1012/190757.333:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1012/195400.371:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)

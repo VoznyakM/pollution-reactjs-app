@@ -50,7 +50,7 @@ export default class MyChart extends Component {
   
       return (
         <>
-        <div style={{ height: '70vh', width: '100%' }} >
+        <div style={{ height: '65vh', width: '100%' }} >
             <Chart data={this.state.volume_chart_data}  
             series={ {showPoints: false} } 
             axes={[

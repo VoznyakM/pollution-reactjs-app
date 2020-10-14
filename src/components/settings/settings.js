@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
+import Link from '@material-ui/core/Link';
+
 import covidService from '../../services/covid.service';
 
 export default class Settings extends Component {
@@ -28,9 +30,28 @@ export default class Settings extends Component {
         />
       </form> */}
         <Paper variant="outlined"  style={{padding: 1 + 'em'}}>
-        <h1>МАЛЮК ЦОІ</h1>
-        <Typography variant="h6" noWrap>
-            Alert COVID
+        <h1>Stop Pandemia</h1>
+        <Typography variant="h6">
+        Проєкт реалізовано за підтримки UPSHIFT Україна та Центру Освітніх Інновацій.​
+        <br /><br />
+        <p>
+        Мета проєкту – створити доступний аналог безконтактного дезінфектора, а також розробка додатку 
+        
+        для оповіщення користувачів інформацією про ризики захворювання з цільовим призначенням в закладах 
+        освіти.​</p>
+
+        <p>Наш сайт: <Link href="https://stoppandemia.com.ua" >https://stoppandemia.com.ua</Link></p>
+        <p>Керівники проєкту: Марія Починок, Казмерчук Анатолій, Ааронець Олександр</p>
+        <p>Команда проєкту: 
+          <br /><small style={{fontSize: '0.6em'}}>
+          Бублик Анатолій - математичне моделювання
+          <br />
+          Возняк Мирослав - розробка додатку і сайту
+          <br />
+          ...
+          </small>
+        </p>
+
         </Typography>
         </Paper>
       </>

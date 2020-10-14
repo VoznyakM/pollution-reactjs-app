@@ -56,27 +56,27 @@ export default class DailyStats extends Component {
     return (
       <>
       <Paper variant="outlined">
-      <Typography variant="h5" component="h3" style={{padding: 1 + 'em'}}>
-      К-сть захворювань {cases} {parseFloat(cases/ycases).toFixed(2)}%
+      <Typography variant="h6" component="h3" style={{padding: 1 + 'em'}}>
+      К-сть захворювань: {cases} <small style={{fontSize: '0.6em'}}>{parseFloat(cases/ycases).toFixed(2)}%</small>
       </Typography>
       {/* <Typography component="p">+20%</Typography> */}
       </Paper>
  
 
       <Paper variant="outlined">
-      <Typography variant="h5" component="h3" style={{padding: 1 + 'em'}}>
-      К-сть смертей {deaths} {parseFloat(deaths/ydeaths).toFixed(2)}%
+      <Typography variant="h6" component="h3" style={{padding: 1 + 'em'}}>
+      К-сть смертей: {deaths} <small style={{fontSize: '0.6em'}}>{parseFloat(deaths/ydeaths).toFixed(2)}%</small>
       </Typography>
       {/* <Typography component="p">+20%</Typography> */}
       </Paper>
       <Paper variant="outlined">
-      <Typography variant="h5" component="h3" style={{padding: 1 + 'em'}}>
-      К-сть виздоровлень {recovered} {parseFloat(recovered/yrecovered).toFixed(2)}%
+      <Typography variant="h6" component="h3" style={{padding: 1 + 'em'}}>
+      К-сть виздоровлень: {recovered} <small style={{fontSize: '0.6em'}}>{parseFloat(recovered/yrecovered).toFixed(2)}%</small>
       </Typography>
       {/* <Typography component="p">+20%</Typography> */}
       </Paper>
       <Paper variant="outlined">
-        <Typography variant="h5" component="h3" style={{padding: 1 + 'em'}}>
+        <Typography variant="h6" component="h3" style={{padding: 1 + 'em'}}>
           Динаміка захворювань
         </Typography>  
         <MyChart />

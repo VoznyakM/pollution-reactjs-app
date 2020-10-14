@@ -32,32 +32,32 @@ import MapIcon from '@material-ui/icons/Map';
 import { usePosition } from 'use-position';
 
 
-const sanitizers = [
-  {
-    id: 1,
-    title: "Стометрівка",
-    latitude: "48.92",
-    longitude: "24.71",
-  },
-  {
-    id: 2,
-    title: "Плаза",
-    latitude: "48.92",
-    longitude: "24.70",   
-  },
-  {
-    id: 3,
-    title: "Центр",
-    latitude: "48.91",
-    longitude: "24.705",   
-  },
-  {
-    id: 4,
-    title: "Стометрівка 2",
-    latitude: "48.92",
-    longitude: "24.71",
-  },
-];
+// const sanitizers = [
+//   {
+//     id: 1,
+//     title: "Стометрівка",
+//     latitude: "48.92",
+//     longitude: "24.71",
+//   },
+//   {
+//     id: 2,
+//     title: "Плаза",
+//     latitude: "48.92",
+//     longitude: "24.70",   
+//   },
+//   {
+//     id: 3,
+//     title: "Центр",
+//     latitude: "48.91",
+//     longitude: "24.705",   
+//   },
+//   {
+//     id: 4,
+//     title: "Стометрівка 2",
+//     latitude: "48.92",
+//     longitude: "24.71",
+//   },
+// ];
 
 // updateMap() {
 //   this.covidService.getMap()
@@ -92,10 +92,61 @@ function Red() {
   <h3>Червона зона</h3>
 <Typography component={'div'}>Заборонено:
 <ul>
-<li>робота громадського транспорту;</li>
-<li>відвідування освітніх установ;</li>
-<li>робота ТРЦ, кафе і ресторанів.</li>
-<li>посадка в міжобласний транспорт (висадка дозволена)</li>
+<li>робота громадського транспорту</li>
+<li>відвідування освітніх установ</li>
+<li>робота ТРЦ, кафе і ресторанів</li>
+<li>обмеження зеленої, жовтої та поморанчевої зон зберігаються</li>
+</ul>
+</Typography>
+</Paper>
+  </>;
+}
+
+function Orange() {
+  return <>
+  <Paper variant="outlined"  style={{padding: 1 + 'em'}}>
+  <h3>Помаранчева зона</h3>
+<Typography component={'div'}>Обмеження:
+<ul>
+<li>діяльність закладів розміщення (хостели, туристичні бази тощо), окрім готелів</li>
+<li>діяльність розважальних закладів, ресторанів у нічний час</li>
+<li>планові госпіталізації в лікарнях</li>
+<li>спортзали, фітнес-центри, заклади культури</li>
+<li>прийом нових змін в дитячі табори</li>
+<li>обмеження для масових заходів: 1 людина на 20 кв. м. та не більше 100 людей</li>
+<li>обмеження жовтої і зеленої зон зберігаються</li>
+</ul>
+</Typography>
+  </Paper>
+  </>;
+}
+
+function Yellow() {
+  return <>
+  <Paper variant="outlined"  style={{padding: 1 + 'em'}}>
+  <h3>Червона зона</h3>
+<Typography component={'div'}>Заборонено:
+<ul>
+<li>відвідування установ соціального захисту, в яких перебувають люди похилого віку, крім тих, що надають послуги кризово</li>
+<li>на вході до закладів чи заходів потрібно розмістити інформацію про можливу кількість відвідувачів. Контроль має здійснювати власник приміщення або організатор події</li>
+<li>обмеження зеленої зони зберігаються</li>
+</ul>
+</Typography>
+</Paper>
+  </>;
+}
+
+function Green() {
+  return <>
+  <Paper variant="outlined"  style={{padding: 1 + 'em'}}>
+  <h3>Червона зона</h3>
+<Typography component={'div'}>Заборонено:
+<ul>
+<li>перебування у громадських будівлях в масках або респіраторах</li>
+<li>проведення масових заходів: не більше 1 людини на 5 квадратних метрів</li>
+<li>кінотеатри із заповненістю на 50%</li>
+<li>перевезення пасажирів тільки в межах сидячих місць</li>
+<li>відвідування закладів дошкільної, шкільної, позашкільної та спеціалізованої освіти, якщо на самоізоляції понад 50% дітей та персоналу закладу</li>
 </ul>
 </Typography>
 </Paper>
@@ -247,19 +298,35 @@ const fetchSanitizer = async () => {
   // console.log(state.volume_map_sanitizer);      
 };
 
+// async function getValue(value) {
+//   const response = await fetch(
+//     process.env.REACT_APP_BACKEND_API + '/setting/' + value
+//   );
+//   const value = await response.json();
+// }
+
 const initData = async () => {
         
   const response = await fetch(
     process.env.REACT_APP_BACKEND_API + '/setting/status_id'
   );
   const status_id = await response.json();
+
+  // const status_id = getValue('status_id');
+
+  const response_orange = await fetch(
+    process.env.REACT_APP_BACKEND_API + '/setting/orange'
+  );
+  const orange = await response_orange.json();
+
   let type = 3;
   let status_name = '';
   let status_link = '';
+  let content = '';
   switch (status_id.value) {
-      case "1": type = "error"; status_name = "червоній"; status_link = "red"; break;
-      case "2": type = "warning";  status_name = "помаранчевій"; status_link = "orange"; break;
-      case "3": type = "info"; status_name = "жовтій"; status_link = "yellow";break;
+      case "1": type = "error"; status_name = "червоній"; status_link = "red"; content = ''; break;
+      case "2": type = "warning";  status_name = "помаранчевій"; status_link = "orange"; content = orange; break;
+      case "3": type = "info"; status_name = "жовтій"; status_link = "yellow"; break;
       case "4": default: type = "success"; status_name = "зеленій"; status_link = "green"; break;
   }
   setStatus({
@@ -303,7 +370,7 @@ const initData = async () => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            МАЛЮК ЦОІ
+            Stop Pandemia
           </Typography>
         </Toolbar>
       </AppBar>
@@ -357,6 +424,15 @@ const initData = async () => {
           <Route path="/red">
             <Red />
           </Route>
+          <Route path="/orange">
+            <Orange />
+          </Route>
+          <Route path="/yellow">
+            <Yellow />
+          </Route>
+          <Route path="/green">
+            <Green />
+          </Route>           
           <Route path="/settings">
             <Settings />
           </Route>
