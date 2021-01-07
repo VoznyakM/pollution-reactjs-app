@@ -54,12 +54,14 @@ export default class Settings extends Component {
           <br />
           Угринчук Юрій - асистент
           <br />
-          <br />
-          <img src="http://www.stoppandemia.com.ua/wp-content/uploads/2020/10/upshift-ukraine-secondary-logo_white_ukr.png" width="250" />
           <br />        
           <img src="http://www.stoppandemia.com.ua/wp-content/uploads/2020/10/unicef-logo-vector.png" width="260" />
           <br />
           <img src="http://www.stoppandemia.com.ua/wp-content/uploads/2020/10/logo-fond-ukr-bez-fona-v-png.png" width="260" />
+          <br />
+          <br />
+          <br />   
+          <img src="http://www.stoppandemia.com.ua/wp-content/uploads/2020/10/upshift-ukraine-secondary-logo_white_ukr.png" width="250" />
         </p>
 
         </Typography>
