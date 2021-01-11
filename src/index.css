@@ -11,3 +11,28 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.row-0 {
+  background: rgb(4, 189, 29);
+  
+}
+.row-1 {
+  background: rgb(165, 206, 99);
+  
+}
+.row-2 {
+  background: rgb(255, 211, 17);
+  
+}
+.row-3 {
+  background: rgb(255, 149, 10);
+  
+}
+.row-4 .MuiTableCell-body{
+  background: rgb(255, 0, 0);
+  color: white;
+}
+.row-5 .MuiTableCell-body {
+  background: rgb(151, 14, 14);
+  color: white;
+}

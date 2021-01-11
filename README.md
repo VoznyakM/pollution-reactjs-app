@@ -1,4 +1,4 @@
-COVID-alert Mobile App based on ReactJS + Material UI
+Pollution-alert Mobile App based on ReactJS + Material UI
 [demo](https://codesandbox.io/s/github/narkov/reactjs-covid-app?file=/src/index.js).
 
 ## Available Scripts

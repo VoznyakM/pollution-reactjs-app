@@ -370,7 +370,7 @@ const initData = async () => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Stop Pandemia
+          Моніторинг осередків підпалювання
           </Typography>
         </Toolbar>
       </AppBar>
@@ -393,7 +393,7 @@ const initData = async () => {
         <Divider />
 
         <List onClick={handleDrawerClose}  >
-          <ListItemLink primary={'Статистика'} icon={<EqualizerIcon />} to='/' />
+          <ListItemLink primary={'Інформація'} icon={<EqualizerIcon />} to='/' />
           <ListItemLink primary={'Рекомендації'} icon={<HelpIcon />} to='/help' />
           <ListItemLink primary={'Карта'} icon={<MapIcon />} to='/map' />
           <ListItemLink primary={'Про додаток'} icon={<InboxIcon />} to='/settings' />
@@ -418,7 +418,7 @@ const initData = async () => {
 
         <Alert severity={status.type}>
         <AlertTitle>Увага</AlertTitle>
-      м. Івано-Франківськ - Ви знаходитеся в {status.name} зоні! <Link to={status.link}>Перегляньте наші рекомендації</Link></Alert>
+      м. Івано-Франківськ - Зафіксована велика кількість підпалів сухої трави <Link to={status.link}>Перегляньте наші рекомендації</Link></Alert>
 
         <Switch>
           <Route path="/red">
