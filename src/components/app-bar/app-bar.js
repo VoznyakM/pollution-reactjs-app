@@ -5,6 +5,7 @@ import DailyStats from '../daily-stats/daily-stats'
 import Map from '../map/map'
 import Settings from '../settings/settings'
 import Help from '../help/help'
+import Report from '../report/report'
 
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -29,6 +30,7 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import EqualizerIcon from '@material-ui/icons/Equalizer';
 import HelpIcon from '@material-ui/icons/Help';
 import MapIcon from '@material-ui/icons/Map';
+import MailIcon from '@material-ui/icons/Mail';
 import { usePosition } from 'use-position';
 
 
@@ -396,6 +398,7 @@ const initData = async () => {
           <ListItemLink primary={'Інформація'} icon={<EqualizerIcon />} to='/' />
           <ListItemLink primary={'Рекомендації'} icon={<HelpIcon />} to='/help' />
           <ListItemLink primary={'Карта'} icon={<MapIcon />} to='/map' />
+          <ListItemLink primary={'Повідомити'} icon={<MailIcon />} to='/report' />
           <ListItemLink primary={'Про додаток'} icon={<InboxIcon />} to='/settings' />
         </List>
 
@@ -438,6 +441,9 @@ const initData = async () => {
           </Route>
           <Route path="/help">
             <Help />
+          </Route>
+          <Route path="/report">
+            <Report />
           </Route>
           <Route path="/map">
           <Map 
