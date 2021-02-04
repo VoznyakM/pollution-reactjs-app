@@ -52,12 +52,12 @@ import {
           <br />
           <div>
             <div>Геокоординати ділянки</div>
-            <Field type="email" id="email" />
+            <Field type="text" id="text1" />
           </div>
           <br />
           <div>
-            <div>Рівень підпалу за 10-бальною шкалою</div>
-            <Field type="number" id="number" />
+            <div>Адреса зафіксованого підпалу</div>
+            <Field type="text" id="text2" />
           </div>
           <br />
           <div>
