@@ -1,12 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import covidService from '../../services/covid.service';
 
 import {
     Button,
@@ -24,10 +19,46 @@ import {
   });
   
 
+  // handleSubmit(e) {
+  //   e.preventDefault();
+  
+  //   fetch('http://localhost:3002/send', {
+  //       method: "POST",
+  //       body: JSON.stringify(this.state),
+  //       headers: {
+  //         'Accept': 'application/json',
+  //         'Content-Type': 'application/json'
+  //       },
+  //     }).then(
+  //     (response) => (response.json())
+  //       ).then((response)=> {
+  //     if (response.status === 'success') {
+  //       alert("Message Sent."); 
+  //       this.resetForm()
+  //     } else if(response.status === 'fail') {
+  //       alert("Message failed to send.")
+  //     }
+  //   })
+  // }
+
+  async function handleOnClick(state) {
+    try {
+      // this.covidService.postProblem
+      const response = await fetch(process.env.REACT_APP_BACKEND_API + '/report', {
+      method: 'POST',
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
+        },
+        body: JSON.stringify(state.data)
+      });      
+      alert('Дякуємо, проблему зафіксовано');
+    } catch(error) {
+      alert('Спробуйте ще раз');
+    }
+  } 
   
   export default function DenseTable() {
-    const classes = useStyles();
- 
+    const classes = useStyles();   
     
     return (
         <Form
@@ -39,7 +70,7 @@ import {
           </div> */}
           <div>
             <div>Опис зафіксованої проблеми</div>
-            <Field rows="10" cols="60" type="textarea" id="textarea" />
+            <Field rows="10" cols="40" type="textarea" id="description" name="description" />
           </div>
           {/* <div>
             <div>date</div>
@@ -51,39 +82,28 @@ import {
           </div>
           <br />
           <div>
-            <div>Геокоординати ділянки</div>
-            <Field type="text" id="text1" />
+            <div>Геокоордината lat ділянки</div>
+            <Field type="text" id="lat" name="lat" />
+          </div>
+          <br />
+          <div>
+            <div>Геокоордината lng ділянки</div>
+            <Field type="text" id="lng" name="lng" />
           </div>
           <br />
           <div>
             <div>Адреса зафіксованого підпалу</div>
-            <Field type="text" id="text2" />
+            <Field type="text" id="address" name="address" />
           </div>
           <br />
           <div>
             <div>Контактний телефон фіксатора</div>
             <Field type="tel" id="tel" />
           </div>
-          {/* <div>
-            <div>text</div>
-            <Field type="text" id="text" />
-          </div> */}
-          {/* <div>
-            <div>password</div>
-            <Field type="password" id="password" />
-          </div>
-          <div>
-            <div>time</div>
-            <Field type="time" id="time" />
-          </div>
-          <div>
-            <div>url</div>
-            <Field type="url" id="url" />
-          </div> */}
           <br />
           <div>
             <div>Рівень підпалу за 10-бальною шкалою</div>
-            <Select id="select" type="select">
+            <Select id="level" type="select" name="level">
               <option disabled value="">--- Choose an option ---</option>
               <option value="option1">1</option>
               <option value="option2">2</option>
@@ -106,7 +126,8 @@ import {
           </div>
           <br />
           <div>
-            <Button id="submit" type="submit" onClick={(state) => console.log(state)}>Зафіксувати</Button>
+            {/* <Button id="submit" type="submit" onClick={(state) => console.log(state)}>Зафіксувати</Button> */}
+            <Button id="submit" type="submit" onClick={(state) => handleOnClick(state)}>Зафіксувати</Button>
           </div>
         </Form>
         );   

@@ -31,5 +31,10 @@ export default class covidService {
   async getStatus(url = '/setting/status_id') {
     const res = await fetch(`${this._apiBase}${url}`);
     return await res.json();
-  }  
+  } 
+  
+  async postProblem(url = '/problem') {
+    const res = await fetch(`${this._apiBase}${url}`);
+    return await res.json();
+  }   
 }
