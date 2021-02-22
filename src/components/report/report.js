@@ -1,7 +1,8 @@
-import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import covidService from '../../services/covid.service';
+import { useLocation } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+// import Paper from '@material-ui/core/Paper';
+// import covidService from '../../services/covid.service';
 
 import {
     Button,
@@ -19,32 +20,10 @@ import {
   });
   
 
-  // handleSubmit(e) {
-  //   e.preventDefault();
-  
-  //   fetch('http://localhost:3002/send', {
-  //       method: "POST",
-  //       body: JSON.stringify(this.state),
-  //       headers: {
-  //         'Accept': 'application/json',
-  //         'Content-Type': 'application/json'
-  //       },
-  //     }).then(
-  //     (response) => (response.json())
-  //       ).then((response)=> {
-  //     if (response.status === 'success') {
-  //       alert("Message Sent."); 
-  //       this.resetForm()
-  //     } else if(response.status === 'fail') {
-  //       alert("Message failed to send.")
-  //     }
-  //   })
-  // }
-
   async function handleOnClick(state) {
     try {
       // this.covidService.postProblem
-      const response = await fetch(process.env.REACT_APP_BACKEND_API + '/report', {
+      const response = await fetch(process.env.REACT_APP_BACKEND_API + '/area', {
       method: 'POST',
         headers: {
           'Content-Type': 'application/json; charset=utf-8',
@@ -57,25 +36,34 @@ import {
     }
   } 
   
+//   const initData = async(lat, lng) => {
+
+// console.log(lat,lng);
+//     this.setState({
+//       lat: lat,
+//       lng: lng,
+//     });
+//   }
+
   export default function DenseTable() {
-    const classes = useStyles();   
-    
+    const classes = useStyles();
+    const [state, setState] = useState([]);
+    const location = useLocation();
+    var lat = location.state ? location.state.lat : 0;
+    var lng = location.state ? location.state.lng : 0;
+
+    // useEffect(() => {
+    //   initData(lat, lng);   
+    //  }, []);
+
     return (
         <Form
           validate
         >
-          {/* <div>
-            <div>checkbox</div>
-            <Field type="checkbox" id="checkbox" />
-          </div> */}
           <div>
             <div>Опис зафіксованої проблеми</div>
-            <Field rows="10" cols="40" type="textarea" id="description" name="description" />
+            <Field rows="10" cols="40" type="textarea" id="description" name="description" placeholder="Детальний опис проблеми" />
           </div>
-          {/* <div>
-            <div>date</div>
-            <Field type="date" id="date" />
-          </div> */}
           <div>
             <div>Дата і час фіксації</div>
             <Field type="datetime-local" id="datetime-local" />
@@ -83,12 +71,12 @@ import {
           <br />
           <div>
             <div>Геокоордината lat ділянки</div>
-            <Field type="text" id="lat" name="lat" />
+            <Field type="text" id="lat" name="lat" value={lat} />
           </div>
           <br />
           <div>
             <div>Геокоордината lng ділянки</div>
-            <Field type="text" id="lng" name="lng" />
+            <Field type="text" id="lng" name="lng" value={lng} />
           </div>
           <br />
           <div>

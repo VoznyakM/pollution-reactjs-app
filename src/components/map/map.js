@@ -6,10 +6,18 @@ import {
   Marker,
   Circle
 } from "react-google-maps";
+import { useHistory } from "react-router"
 
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 const Map = props => {
-//  console.log(props);
+
     let iconMarker = new window.google.maps.MarkerImage(
       "https://lh3.googleusercontent.com/bECXZ2YW3j0yIEBVo92ECVqlnlbX9ldYNGrCe0Kr4VGPq-vJ9Xncwvl16uvosukVXPfV=w300",
       null, /* size is determined at runtime */
@@ -18,10 +26,21 @@ const Map = props => {
       new window.google.maps.Size(32, 32)
     );
 
+    let history = useHistory();
+
+    const onMarkerClick = (evt) => {
+      console.log(evt);
+      history.push({
+        pathname: "/report",
+        state: { lat: evt.latLng.lat(), lng: evt.latLng.lng() }
+      });
+    };
+
     return (
       <GoogleMap
         defaultZoom={props.zoom}
         defaultCenter={props.center}
+        onClick={onMarkerClick} 
       >
         
               <Marker 
@@ -37,7 +56,6 @@ const Map = props => {
             <Fragment key={sanitizer.id}>
               <Marker
                 icon={iconMarker} 
-                // onClick={onClick} 
                 title={sanitizer.title} 
                 position={{
                   lat: parseFloat(sanitizer.latitude),
