@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
-import Link from '@material-ui/core/Link';
 
 import covidService from '../../services/covid.service';
 

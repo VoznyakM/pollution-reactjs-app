@@ -6,6 +6,8 @@ import Map from '../map/map'
 import Settings from '../settings/settings'
 import Help from '../help/help'
 import Report from '../report/report'
+import DataList from '../list/list'
+import SocialList from '../sociallist/sociallist'
 
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -31,6 +33,8 @@ import EqualizerIcon from '@material-ui/icons/Equalizer';
 import HelpIcon from '@material-ui/icons/Help';
 import MapIcon from '@material-ui/icons/Map';
 import MailIcon from '@material-ui/icons/Mail';
+import ListIcon from '@material-ui/icons/List';
+import ListAltIcon from '@material-ui/icons/ListAlt';
 import { usePosition } from 'use-position';
 
 
@@ -399,6 +403,8 @@ const initData = async () => {
           <ListItemLink primary={'Рекомендації'} icon={<HelpIcon />} to='/help' />
           <ListItemLink primary={'Карта'} icon={<MapIcon />} to='/map' />
           <ListItemLink primary={'Повідомити'} icon={<MailIcon />} to='/report' />
+          <ListItemLink primary={'Підпали'} icon={<ListIcon />} to='/list' />
+          <ListItemLink primary={'Соцмережі'} icon={<ListAltIcon />} to='/social' />
           <ListItemLink primary={'Про додаток'} icon={<InboxIcon />} to='/settings' />
         </List>
 
@@ -444,6 +450,12 @@ const initData = async () => {
           </Route>
           <Route path="/report">
             <Report />
+          </Route>
+          <Route path="/list">
+            <DataList />
+          </Route>
+          <Route path="/social">
+            <SocialList />
           </Route>
           <Route path="/map">
           <Map 

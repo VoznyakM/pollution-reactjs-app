@@ -8,14 +8,6 @@ import {
 } from "react-google-maps";
 import { useHistory } from "react-router"
 
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-
 const Map = props => {
 
     let iconMarker = new window.google.maps.MarkerImage(
@@ -29,7 +21,7 @@ const Map = props => {
     let history = useHistory();
 
     const onMarkerClick = (evt) => {
-      console.log(evt);
+      // console.log(evt);
       history.push({
         pathname: "/report",
         state: { lat: evt.latLng.lat(), lng: evt.latLng.lng() }
