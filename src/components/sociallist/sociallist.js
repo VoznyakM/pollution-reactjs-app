@@ -64,6 +64,7 @@ export default function AlignItemsList() {
 
   {rows.map(row => {
           return (
+            <>
           <ListItem alignItems="flex-start">
             <ListItemAvatar>
               <Avatar alt={row.author} src={row.avatar} />
@@ -78,15 +79,16 @@ export default function AlignItemsList() {
                     className={classes.inline}
                     color="textPrimary"
                   >
-                    {row.author}
+                    {row.author} 
                   </Typography>
-                  " — {row.description}"
+                  &nbsp;" — {row.description}"
                 </React.Fragment>
               }
             />
             <Button onClick={onClick}>Зафіксувати</Button>
           </ListItem>
-          // <Divider variant="inset" component="li" />          
+          <Divider variant="inset" component="li" />       
+          </>   
           );
         })}
 

@@ -21,21 +21,21 @@ export default class MyChart extends Component {
         this.setState({
           volume_chart_data: [
             {
-              label: "Захворювань",
+              label: "Зафіксовано",
               data: stats.map(vol => ({
                 x: Date.parse(vol.date),
                 y: vol.cases
               }))
             },
             {
-              label: "Смертей",
+              label: "Повідомлено",
               data: stats.map(vol => ({
                 x: Date.parse(vol.date),
                 y: vol.deaths
               }))
             },
             {
-              label: "Вилікувалося",
+              label: "Соцмережі",
               data: stats.map(vol => ({
                 x: Date.parse(vol.date),
                 y: vol.recovered

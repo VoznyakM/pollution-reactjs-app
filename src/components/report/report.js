@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 import { useLocation } from "react-router-dom";
-import React, { useState, useEffect } from 'react';
-// import Paper from '@material-ui/core/Paper';
+import React, { useState } from 'react';
+import Paper from '@material-ui/core/Paper';
 // import covidService from '../../services/covid.service';
 
 import {
@@ -11,14 +11,6 @@ import {
     RadioGroup,
     Select,
   } from 'react-form-package';
-
-  
-  const useStyles = makeStyles({
-    table: {
-      minWidth: 650,
-    },
-  });
-  
 
   async function handleOnClick(state) {
     try {
@@ -35,28 +27,17 @@ import {
       alert('Спробуйте ще раз');
     }
   } 
-  
-//   const initData = async(lat, lng) => {
-
-// console.log(lat,lng);
-//     this.setState({
-//       lat: lat,
-//       lng: lng,
-//     });
-//   }
 
   export default function DenseTable() {
-    const classes = useStyles();
+    
     const [state, setState] = useState([]);
     const location = useLocation();
     var lat = location.state ? location.state.lat : 0;
     var lng = location.state ? location.state.lng : 0;
 
-    // useEffect(() => {
-    //   initData(lat, lng);   
-    //  }, []);
-
     return (
+      <Paper variant="outlined"  style={{padding: 1 + 'em'}}>
+        <h3>Фіксація підпалу</h3>
         <Form
           validate
         >
@@ -90,25 +71,28 @@ import {
           </div>
           <br />
           <div>
-            <div>Рівень підпалу за 10-бальною шкалою</div>
+            <div>Рівень забруднення за впливом на здоров'я</div>
             <Select id="level" type="select" name="level">
-              <option disabled value="">--- Choose an option ---</option>
-              <option value="option1">1</option>
-              <option value="option2">2</option>
-              <option value="option3">3</option>
+              <option disabled value="">--- Вибір ---</option>
+              <option value="1">Хороший</option>
+              <option value="2">Задовільний</option>
+              <option value="3">Помірно забруднений</option>
+              <option value="4">Високий</option>
+              <option value="5">Дуже високий</option>
+              <option value="6">Небезпечний</option>
             </Select>
           </div>
           <br />
           <div>
             <div>Стан підпалу</div>
-            <RadioGroup type="radio" id="radio">
-              <input type="radio" name="radio" id="radio1" />
+            <RadioGroup type="radio" id="radio" >
+              <input value="1" type="radio" name="radio" id="radio1" checked />
               Проблему зафіксовано
               <br />
-              <input type="radio" name="radio" id="radio2" />
+              <input value="2" type="radio" name="radio" id="radio2" />
               Про проблему повідомлено в поліцію
               <br />
-              <input type="radio" name="radio" id="radio3" />
+              <input value="3" type="radio" name="radio" id="radio3" />
               Проблему усунуто
             </RadioGroup>
           </div>
@@ -118,6 +102,7 @@ import {
             <Button id="submit" type="submit" onClick={(state) => handleOnClick(state)}>Зафіксувати</Button>
           </div>
         </Form>
+        </Paper>
         );   
  
   }
