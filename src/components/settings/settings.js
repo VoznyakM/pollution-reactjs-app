@@ -20,22 +20,12 @@ export default class Settings extends Component {
   render() {
     return (
       <>
-      {/* <form>
-        <h1>Налаштування</h1>
-        <h2>привіт, {this.state.username}</h2>
-        <input
-          type="text"
-          onChange={this.myChangeHandler}
-        />
-      </form> */}
         <Paper variant="outlined"  style={{padding: 1 + 'em'}}>
         <h1>Моніторинг осередків підпалювання</h1>
         <Typography variant="h6">
         <p>
-        Мета проєкту – створити доступний аналог безконтактного дезінфектора, а також розробка додатку 
-        
-        для оповіщення користувачів інформацією про ризики захворювання з цільовим призначенням в закладах 
-        освіти.​</p>
+        Мета проєкту – 
+        </p>
 
         <p>Розробник: 
           <br />

@@ -1,20 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import { DataGrid } from '@material-ui/data-grid';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Button from "@material-ui/core/Button";
-// import { useDemoData } from '@material-ui/x-grid-data-generator';
-// import Paper from '@material-ui/core/Paper';
+import { useHistory } from "react-router";
 
-
-// export default function BasisPaginationGrid(props) {
 const BasisPaginationGrid = props => {
-
-    // const { data } = useDemoData({
-    //   dataSet: 'Commodity',
-    //   rowLength: 1000,
-    //   maxColumns: 6,
-    // });
 
     const [state, setState] = useState([]);
 
@@ -59,7 +49,7 @@ const columns = [
     { field: 'status_id', headerName: 'Status', type: 'number', width: 130 },
     {
         field: "",
-        headerName: "Status",
+        headerName: "Action",
         sortable: false,
         width: 150,
         disableClickEventBubbling: true,
@@ -75,11 +65,17 @@ const columns = [
             fields.forEach((f) => {
               thisRow[f] = params.getValue(f);
             });
-    
-            return alert(JSON.stringify(thisRow, null, 4));
+
+            let data = thisRow; // JSON.stringify(thisRow, null, 4));
+            // console.log(data);
+            history.push({
+              pathname: "/report",
+              state: { id: data.id }
+            });
+
           };
     
-          return <Button onClick={onClick}>Update status</Button>;
+          return <Button onClick={onClick}>Update</Button>;
         }
       },    
     // {
@@ -94,6 +90,7 @@ const columns = [
   ];
 
   const rows = state.volume_map_data;
+  let history = useHistory();
    
   if (!state.loading) {
     return ( <CircularProgress /> );
@@ -101,8 +98,7 @@ const columns = [
 
     return (
       <div style={{ height: 400, width: '100%' }}>
-        <DataGrid pageSize={20} rowsPerPageOptions={[5, 10, 20]} pagination rows={rows} columns={columns} />   
-        {/* {...data} */}
+        <DataGrid pageSize={20} rowsPerPageOptions={[5, 10, 20]} pagination rows={rows} columns={columns} />
       </div>
     );
   }
