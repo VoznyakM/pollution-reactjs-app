@@ -16,8 +16,19 @@ import {
   async function handleOnClick(state) {
     try {
       // this.covidService.postProblem
-      const response = await fetch(process.env.REACT_APP_BACKEND_API + '/area', {
-      method: 'POST',
+      let url = '';
+      let method = '';
+      // console.log(state.data);
+      if (state.data.id) {
+        url = process.env.REACT_APP_BACKEND_API + '/area/' + state.data.id;
+        method = "PATCH";
+      } else {
+        url = process.env.REACT_APP_BACKEND_API + '/area';
+        method = "POST";
+      }
+      
+      const response = await fetch(url, {
+      method: method,
         headers: {
           'Content-Type': 'application/json; charset=utf-8',
         },
@@ -73,10 +84,10 @@ import {
         <Form
           validate
         >
-          <Field type="hidden" id="record_id" name="id" value={row.id} />
+          <Field type="hidden" id="id" name="id" value={row.id} />
           <div>
             <div>Опис зафіксованої проблеми</div>
-            <Field rows="10" cols="40" type="textarea" id="description" name="description" placeholder="Детальний опис проблеми" value={row.title} />
+            <Field rows="10" cols="40" type="textarea" id="description" name="description" placeholder="Детальний опис проблеми" value={row.description} />
           </div>
           <div>
             <div>Дата і час фіксації</div>
