@@ -77,7 +77,8 @@ import {
 
     if (!lat) lat = row.lat;
     if (!lng) lng = row.lng;
-
+    if (!row.description) row.description = location.state ? location.state.description : '';
+    
     return (
       <Paper variant="outlined"  style={{padding: 1 + 'em'}}>
         <h3>Фіксація підпалу</h3>

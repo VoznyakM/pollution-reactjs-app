@@ -97,7 +97,7 @@ const columns = [
   }
 
     return (
-      <div style={{ height: 400, width: '100%' }}>
+      <div style={{ height: 500, width: '100%' }}>
         <DataGrid pageSize={20} rowsPerPageOptions={[5, 10, 20]} pagination rows={rows} columns={columns} />
       </div>
     );

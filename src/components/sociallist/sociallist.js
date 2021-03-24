@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from "@material-ui/core/Button";
 import React, { useState, useEffect } from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { useHistory } from "react-router"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -45,8 +46,15 @@ export default function AlignItemsList() {
     });
   }
 
-  const onClick = () => {
-    return alert('Зафіксовано в базі');
+  let history = useHistory();
+  const onClick = (desc) => {
+    // console.log();
+    history.push({
+      pathname: "/report",
+      state: { description: desc } 
+    });
+    // lat: evt.latLng.lat(), lng: evt.latLng.lng()
+    // return alert('Зафіксовано в базі');
   };
 
   useEffect(() => {
@@ -65,7 +73,7 @@ export default function AlignItemsList() {
   {rows.map(row => {
           return (
             <>
-          <ListItem alignItems="flex-start">
+          <ListItem alignItems="flex-start" >
             <ListItemAvatar>
               <Avatar alt={row.author} src={row.avatar} />
             </ListItemAvatar>
@@ -85,7 +93,9 @@ export default function AlignItemsList() {
                 </React.Fragment>
               }
             />
-            <Button onClick={onClick}>Зафіксувати</Button>
+            {/* ()=>{this.handleRemove(id)} */}
+            {/* <Button onClick={this.onClick} value={row.description}>Зафіксувати</Button> */}
+            <Button onClick={() => {onClick(row.description)}} >Зафіксувати</Button>
           </ListItem>
           <Divider variant="inset" component="li" />       
           </>   
