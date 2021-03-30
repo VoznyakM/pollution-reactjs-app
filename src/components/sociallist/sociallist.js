@@ -95,7 +95,7 @@ export default function AlignItemsList() {
             />
             {/* ()=>{this.handleRemove(id)} */}
             {/* <Button onClick={this.onClick} value={row.description}>Зафіксувати</Button> */}
-            <Button onClick={() => {onClick(row.description)}} >Зафіксувати</Button>
+            <Button onClick={() => {onClick(row.description)}} >Report</Button>
           </ListItem>
           <Divider variant="inset" component="li" />       
           </>   

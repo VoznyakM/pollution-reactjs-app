@@ -10,9 +10,9 @@ const BasisPaginationGrid = props => {
 
     function getStatus(val) {
         switch (val) {
-            default: case 1: return 'Зафіксовано';
-            case 2: return 'Повідомлено';
-            case 3: return 'Усунуто';
+            default: case 1: return 'Recorded';
+            case 2: return 'Reported';
+            case 3: return 'Removed';
         }
     }
 

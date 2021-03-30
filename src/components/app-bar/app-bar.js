@@ -376,7 +376,7 @@ const initData = async () => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-          Моніторинг осередків підпалювання
+          Wildfire Alert System
           </Typography>
         </Toolbar>
       </AppBar>
@@ -399,13 +399,13 @@ const initData = async () => {
         <Divider />
 
         <List onClick={handleDrawerClose}  >
-          <ListItemLink primary={'Інформація'} icon={<EqualizerIcon />} to='/' />
-          <ListItemLink primary={'Рекомендації'} icon={<HelpIcon />} to='/help' />
-          <ListItemLink primary={'Карта'} icon={<MapIcon />} to='/map' />
-          <ListItemLink primary={'Повідомити'} icon={<MailIcon />} to='/report' />
-          <ListItemLink primary={'Підпали'} icon={<ListIcon />} to='/list' />
-          <ListItemLink primary={'Соцмережі'} icon={<ListAltIcon />} to='/social' />
-          <ListItemLink primary={'Про додаток'} icon={<InboxIcon />} to='/settings' />
+          <ListItemLink primary={'Information'} icon={<EqualizerIcon />} to='/' />
+          <ListItemLink primary={'Recommendations'} icon={<HelpIcon />} to='/help' />
+          <ListItemLink primary={'Map'} icon={<MapIcon />} to='/map' />
+          <ListItemLink primary={'Report'} icon={<MailIcon />} to='/report' />
+          <ListItemLink primary={'Incidents List'} icon={<ListIcon />} to='/list' />
+          <ListItemLink primary={'Social Networks'} icon={<ListAltIcon />} to='/social' />
+          <ListItemLink primary={'About'} icon={<InboxIcon />} to='/settings' />
         </List>
 
         <Divider />
@@ -426,8 +426,8 @@ const initData = async () => {
         <div className={classes.drawerHeader} />
 
         <Alert severity={status.type}>
-        <AlertTitle>Увага</AlertTitle>
-      м. Івано-Франківськ - Зафіксована велика кількість підпалів сухої трави <Link to={status.link}>Перегляньте наші рекомендації</Link></Alert>
+        <AlertTitle>ALERT</AlertTitle>
+      Ivano-Frankivsk - A large number of fires of dry grass were recorded <Link to={status.link}>See our recommendations</Link></Alert>
 
         <Switch>
           <Route path="/red">

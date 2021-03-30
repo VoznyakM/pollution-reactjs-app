@@ -34,9 +34,9 @@ import {
         },
         body: JSON.stringify(state.data)
       });      
-      alert('Дякуємо, проблему зафіксовано');
+      alert('Thanks, problem is reported');
     } catch(error) {
-      alert('Спробуйте ще раз');
+      alert('Please try again');
     }
   } 
 
@@ -56,7 +56,7 @@ import {
           response: data
         });
       } catch(error) {
-        alert('Спробуйте ще раз');
+        alert('Please try again');
       }
     } 
 
@@ -81,70 +81,67 @@ import {
     
     return (
       <Paper variant="outlined"  style={{padding: 1 + 'em'}}>
-        <h3>Фіксація підпалу</h3>
+        <h3>Report incident</h3>
         <Form
           validate
         >
           <Field type="hidden" id="id" name="id" value={row.id} />
           <div>
-            <div>Опис зафіксованої проблеми</div>
-            <Field rows="10" cols="40" type="textarea" id="description" name="description" placeholder="Детальний опис проблеми" value={row.description} />
+            <div>Description of the problem</div>
+            <Field rows="10" cols="40" type="textarea" id="description" name="description" placeholder="Detailed description of the problem" value={row.description} />
           </div>
           <div>
-            <div>Дата і час фіксації</div>
+            <div>Date and time of report</div>
             <Field type="datetime-local" id="datetime-local" />
           </div>
           <br />
           <div>
-            <div>Геокоордината lat ділянки</div>
+            <div>Lat</div>
             <Field type="text" id="lat" name="lat" value={lat} />
           </div>
           <br />
           <div>
-            <div>Геокоордината lng ділянки</div>
+            <div>Lng</div>
             <Field type="text" id="lng" name="lng" value={lng} />
           </div>
           <br />
           <div>
-            <div>Адреса зафіксованого підпалу</div>
+            <div>Address of incident</div>
             <Field type="text" id="address" name="address" value={row.address} />
           </div>
           <br />
           <div>
-            <div>Контактний телефон фіксатора</div>
+            <div>Contact phone</div>
             <Field type="tel" id="tel" value={row.phone} />
           </div>
           <br />
           <div>
-            <div>Рівень забруднення за впливом на здоров'я</div>
+            <div>The level of pollution by impact on health</div>
             <Select id="level" type="select" name="level" value={row.level}>
-              <option disabled value="">--- Вибір ---</option>
-              <option value="1">Хороший</option>
-              <option value="2">Задовільний</option>
-              <option value="3">Помірно забруднений</option>
-              <option value="4">Високий</option>
-              <option value="5">Дуже високий</option>
-              <option value="6">Небезпечний</option>
+              <option disabled value="">--- Choice ---</option>
+              <option value="1">Low</option>
+              <option value="2">Medium</option>
+              <option value="3">High</option>
             </Select>
           </div>
           <br />
           <div>
-            <div>Стан підпалу</div>
+            <div>Report status</div>
             <RadioGroup type="radio" id="radio">
               <input value="1" type="radio" name="radio" id="radio1" checked />
-              Проблему зафіксовано
+              The problem has been reported
               <br />
               <input value="2" type="radio" name="radio" id="radio2" />
-              Про проблему повідомлено в поліцію
+              The problem has been reported to the police
               <br />
               <input value="3" type="radio" name="radio" id="radio3" />
-              Проблему усунуто
+              The problem is fixed
             </RadioGroup>
           </div>
           <br />
           <div>
             {/* <Button id="submit" type="submit" onClick={(state) => console.log(state)}>Зафіксувати</Button> */}
-            <Button id="submit" type="submit" onClick={(state) => handleOnClick(state)}>Зафіксувати</Button>
+            <Button id="submit" type="submit" onClick={(state) => handleOnClick(state)}>Report</Button>
           </div>
         </Form>
         </Paper>

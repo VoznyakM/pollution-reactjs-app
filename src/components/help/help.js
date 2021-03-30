@@ -21,9 +21,9 @@ import Paper from '@material-ui/core/Paper';
   
     return (
       <TableContainer component={Paper}>
-Якщо ви бачите, як несвідомі громадяни палять листя…
-Важко знайти людину, якій би подобалось дихати димом від тліючого листя чи палаючого степу. Багато хто хотів би, щоб ці порушення припинились, але як досягти цього не знають.
-Починаючи боротьбу із палами у своєму населеному пункті, ви повинні знати, що закон у будь-якому випадку на вашій стороні.        
+If you see unconscious citizens burning leaves…
+It is difficult to find a person who would like to breathe smoke from smoldering leaves or burning steppe. Many would like these violations to stop, but they do not know how to achieve this.
+When starting a fight against fires in your community, you need to know that the law is on your side anyway.       
       </TableContainer>
     );
   }
