@@ -5,6 +5,11 @@ import Paper from '@material-ui/core/Paper';
 import CircularProgress from '@material-ui/core/CircularProgress';
 // import covidService from '../../services/covid.service';
 
+// import IconButton from '@material-ui/core/IconButton';
+// import ShareIcon from '@material-ui/icons/Share';
+// import Share from 'material-ui-share';
+import ReactShareSocial from 'react-share-social';
+
 import {
     Button,
     Field,
@@ -81,7 +86,30 @@ import {
     
     return (
       <Paper variant="outlined"  style={{padding: 1 + 'em'}}>
-        <h3>Report incident</h3>
+        <h3>
+        
+        {/* <Share
+          title='This is a cool title'
+          text='Oh you want some text for this share component'
+          url='https://developers.google.com/web/updates/2016/09/navigator-share'
+        /> */}
+
+          {/* <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            // onClick={handleDrawerOpen}
+            edge="start"
+            // className={clsx(classes.menuButton, open && classes.hide)}
+          >
+            <ShareIcon />
+          </IconButton> */}
+
+  <ReactShareSocial 
+     url ="wildfirealert.com"
+     socialTypes={['facebook','twitter']}
+   />
+
+          Report incident </h3>
         <Form
           validate
         >
