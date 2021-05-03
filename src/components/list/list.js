@@ -10,9 +10,9 @@ const BasisPaginationGrid = props => {
 
     function getStatus(val) {
         switch (val) {
-            default: case 1: return 'Recorded';
-            case 2: return 'Reported';
-            case 3: return 'Removed';
+            default: case 1: return 'Зафіксовано';
+            case 2: return 'Повідомлено';
+            case 3: return 'Ліквідовано';
         }
     }
 
@@ -42,14 +42,14 @@ const BasisPaginationGrid = props => {
 
 const columns = [
     { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'title', headerName: 'Title', width: 230 },
-    { field: 'address', headerName: 'Address', width: 130 },
-    { field: 'phone', headerName: 'Phone', width: 130 },
-    { field: 'level', headerName: 'Level', type: 'number', width: 90 },
-    { field: 'status_id', headerName: 'Status', type: 'number', width: 130 },
+    { field: 'title', headerName: 'Назва', width: 230 },
+    { field: 'address', headerName: 'Адреса', width: 130 },
+    { field: 'phone', headerName: 'Телефон', width: 130 },
+    { field: 'level', headerName: 'Рівень', type: 'number', width: 90 },
+    { field: 'status_id', headerName: 'Статус', type: 'number', width: 130 },
     {
         field: "",
-        headerName: "Action",
+        headerName: "Дія",
         sortable: false,
         width: 150,
         disableClickEventBubbling: true,
@@ -75,7 +75,7 @@ const columns = [
 
           };
     
-          return <Button onClick={onClick}>Update</Button>;
+          return <Button onClick={onClick}>Оновити</Button>;
         }
       },    
     // {

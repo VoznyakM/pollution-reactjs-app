@@ -57,7 +57,7 @@ export default class DailyStats extends Component {
       <>
       <Paper variant="outlined">
       <Typography variant="h6" component="h3" style={{padding: 1 + 'em'}}>
-      Number of reported incidents: {cases} <small style={{fontSize: '0.6em'}}>{parseFloat(cases/ycases).toFixed(2)}%</small>
+      Кількість повідомлених інцидентів: {cases} <small style={{fontSize: '0.6em'}}>{parseFloat(cases/ycases).toFixed(2)}%</small>
       </Typography>
       {/* <Typography component="p">+20%</Typography> */}
       </Paper>
@@ -65,19 +65,19 @@ export default class DailyStats extends Component {
 
       <Paper variant="outlined">
       <Typography variant="h6" component="h3" style={{padding: 1 + 'em'}}>
-      Number of recorded reports to the police: {deaths} <small style={{fontSize: '0.6em'}}>{parseFloat(deaths/ydeaths).toFixed(2)}%</small>
+      Кількість звернень до поліції: {deaths} <small style={{fontSize: '0.6em'}}>{parseFloat(deaths/ydeaths).toFixed(2)}%</small>
       </Typography>
       {/* <Typography component="p">+20%</Typography> */}
       </Paper>
       <Paper variant="outlined">
       <Typography variant="h6" component="h3" style={{padding: 1 + 'em'}}>
-      Number of messages on social networks: {recovered} <small style={{fontSize: '0.6em'}}>{parseFloat(recovered/yrecovered).toFixed(2)}%</small>
+      Кількість звернень у соціальних мережах: {recovered} <small style={{fontSize: '0.6em'}}>{parseFloat(recovered/yrecovered).toFixed(2)}%</small>
       </Typography>
       {/* <Typography component="p">+20%</Typography> */}
       </Paper>
       <Paper variant="outlined">
         <Typography variant="h6" component="h3" style={{padding: 1 + 'em'}}>
-          Dynamics of reported incidents
+          Динаміка повідомлених інцидентів
         </Typography>  
         <MyChart />
       </Paper>        

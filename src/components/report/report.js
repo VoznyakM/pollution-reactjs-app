@@ -109,67 +109,67 @@ import {
      socialTypes={['facebook','twitter']}
    />
 
-          Report incident </h3>
+      Повідомте про інцидент </h3>
         <Form
           validate
         >
           <Field type="hidden" id="id" name="id" value={row.id} />
           <div>
-            <div>Description of the problem</div>
-            <Field rows="10" cols="40" type="textarea" id="description" name="description" placeholder="Detailed description of the problem" value={row.description} />
+            <div>Опис проблеми</div>
+            <Field rows="10" cols="40" type="textarea" id="description" name="description" placeholder="Детальний опис інциденту" value={row.description} />
           </div>
           <div>
-            <div>Date and time of report</div>
+            <div>Дата та час звіту</div>
             <Field type="datetime-local" id="datetime-local" />
           </div>
           <br />
           <div>
-            <div>Lat</div>
+            <div>Широта</div>
             <Field type="text" id="lat" name="lat" value={lat} />
           </div>
           <br />
           <div>
-            <div>Lng</div>
+            <div>Довгота</div>
             <Field type="text" id="lng" name="lng" value={lng} />
           </div>
           <br />
           <div>
-            <div>Address of incident</div>
+            <div>Адреса інциденту</div>
             <Field type="text" id="address" name="address" value={row.address} />
           </div>
           <br />
           <div>
-            <div>Contact phone</div>
+            <div>Контактний телефон</div>
             <Field type="tel" id="tel" value={row.phone} />
           </div>
           <br />
           <div>
-            <div>The level of pollution by impact on health</div>
+            <div>Рівень забруднення за впливом на здоров'я</div>
             <Select id="level" type="select" name="level" value={row.level}>
-              <option disabled value="">--- Choice ---</option>
-              <option value="1">Low</option>
-              <option value="2">Medium</option>
-              <option value="3">High</option>
+              <option disabled value="">--- Вибір ---</option>
+              <option value="1">Низький</option>
+              <option value="2">Середній</option>
+              <option value="3">Високий</option>
             </Select>
           </div>
           <br />
           <div>
-            <div>Report status</div>
+            <div>Статус звіту</div>
             <RadioGroup type="radio" id="radio">
               <input value="1" type="radio" name="radio" id="radio1" checked />
-              The problem has been reported
+              Про проблему було повідомлено
               <br />
               <input value="2" type="radio" name="radio" id="radio2" />
-              The problem has been reported to the police
+              Поліцію було повідомлено про проблему
               <br />
               <input value="3" type="radio" name="radio" id="radio3" />
-              The problem is fixed
+              Проблема виправлена
             </RadioGroup>
           </div>
           <br />
           <div>
             {/* <Button id="submit" type="submit" onClick={(state) => console.log(state)}>Зафіксувати</Button> */}
-            <Button id="submit" type="submit" onClick={(state) => handleOnClick(state)}>Report</Button>
+            <Button id="submit" type="submit" onClick={(state) => handleOnClick(state)}>Повідомити</Button>
           </div>
         </Form>
         </Paper>
